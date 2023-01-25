@@ -1,1 +1,16 @@
-﻿  LUA_SIClone.vcxproj -> E:\Desktop\LUA_Test\LUA_SIClone\Release\LUA_SIClone.exe
+﻿  Barrier.cpp
+  Game.cpp
+  Input.cpp
+  laser.cpp
+  main.cpp
+  Mothership.cpp
+  Player.cpp
+  Scene.cpp
+  Ship.cpp
+  Ufo.cpp
+  Generating code
+  180 of 185 functions (97.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    1 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  LUA_SIClone.vcxproj -> D:\Documents\LUA_Attack\Release\LUA_SIClone.exe
