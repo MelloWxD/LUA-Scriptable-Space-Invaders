@@ -7,6 +7,10 @@ Last Updated:	25/10/2015
 
 Description:main
 */
+//************************* HAS BEEN UPDATED****************************************
+
+
+
 
 #include <ctime>
 #include "Input.h"
@@ -40,7 +44,7 @@ int main()
 	laser* laser_limit[10];
 	laser* Ufo_lasers[10];
 
-	Player* the_ship = new Player(500, 625, 3, "assets/player0.bmp");//create the player ship
+	Player* the_ship = new Player(500, 625, 5, "assets/player0.bmp");//create the player ship
 	the_ship->addFrame("assets/player1.bmp");
 
 
