@@ -1,15 +1,6 @@
-﻿  Barrier.cpp
-  Game.cpp
-  Input.cpp
-  laser.cpp
-  main.cpp
-  Mothership.cpp
-  Player.cpp
-  Scene.cpp
-  Ship.cpp
-  Ufo.cpp
+﻿  Ship.cpp
   Generating code
-  180 of 185 functions (97.3%) were compiled, the rest were copied from previous compilation.
+  11 of 185 functions ( 5.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code

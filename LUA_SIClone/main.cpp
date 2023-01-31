@@ -70,7 +70,7 @@ int main()
 		al_rest(1.0);
 	}
 	
-	while (the_ship->getLives() > 0)// keep going til the ship is dead
+	while (the_ship->getLives() > 0)// keep going until the ship is dead
 	{
 		
 			
@@ -106,7 +106,7 @@ int main()
 				Input_manager->set_key_to_false(KEY_A);
 			}
 
-			while (the_ship->getLives() > 0)// keep going til the ship is dead
+			while (the_ship->getLives() > 0)// keep going until the ship is dead
 			{
 				while (!Input_manager->key_is_pressed(KEY_ESCAPE)/*&& Input_manager->key_is_pressed(KEY_ENTER)*/)// loop until escape key is pressed
 				{
@@ -182,29 +182,23 @@ int main()
 
 					for (int i = 0; i < 10; i++)//delete the player lasers if they leave the screen
 					{
-						if (laser_limit[i] != NULL)
-						{
-							if (laser_limit[i]->getY() <= 0)
-							{
+						if (laser_limit[i] != NULL && laser_limit[i]->getY() <= 0)
+						{							
 								delete laser_limit[i];
 								laser_limit[i] = nullptr;
 								laser_limit[i] = NULL;
 								break;
-							}
 						}
 					}
 
 					for (int i = 0; i < 10; i++)//delete the ufo lasers if they leave the screen
 					{
-						if (Ufo_lasers[i] != NULL)
-						{
-							if (Ufo_lasers[i]->getY() >= 700)
-							{
+						if (Ufo_lasers[i] != NULL && Ufo_lasers[i]->getY() >= 700)
+						{							
 								delete Ufo_lasers[i];
 								Ufo_lasers[i] = nullptr;
 								Ufo_lasers[i] = NULL;
 								break;
-							}
 						}
 					}
 
@@ -216,60 +210,39 @@ int main()
 							{
 								for (x = 0; x < 10; x++)
 								{
-									if (DynamicUfoArray[y][x] != NULL)
-									{
-										if (laser_limit[i] != NULL)
-										{
-											if (laser_limit[i]->getX() >= DynamicUfoArray[y][x]->getX() && laser_limit[i]->getX() <= DynamicUfoArray[y][x]->getX() + 68)
-											{
-												if (laser_limit[i]->getY() >= DynamicUfoArray[y][x]->getY() && laser_limit[i]->getY() <= DynamicUfoArray[y][x]->getY() + 53)
-												{
-													if (laser_limit[i]->getX() + 4 >= DynamicUfoArray[y][x]->getX() && laser_limit[i]->getX() + 4 <= DynamicUfoArray[y][x]->getX() + 68)
-													{
-														ufo_counter++;
-														delete DynamicUfoArray[y][x];
-														DynamicUfoArray[y][x] = nullptr;
-														the_ship->setScore(100);
-														delete laser_limit[i];
-														laser_limit[i] = nullptr;
-														laser_limit[i] = NULL;
-													}
-												}
-											}
-											if (laser_limit[i] == NULL)break;
-										}
-										if (laser_limit[i] == NULL)break;
+									if (DynamicUfoArray[y][x] != NULL && laser_limit[i] != NULL &&
+										laser_limit[i]->getX() >= DynamicUfoArray[y][x]->getX() && laser_limit[i]->getX() <= DynamicUfoArray[y][x]->getX() + 68
+										&& laser_limit[i]->getY() >= DynamicUfoArray[y][x]->getY() && laser_limit[i]->getY() <= DynamicUfoArray[y][x]->getY() + 53
+										&& laser_limit[i]->getX() + 4 >= DynamicUfoArray[y][x]->getX() && laser_limit[i]->getX() + 4 <= DynamicUfoArray[y][x]->getX() + 68)
+									{										
+										ufo_counter++;
+										delete DynamicUfoArray[y][x];
+										DynamicUfoArray[y][x] = nullptr;
+										the_ship->setScore(100);
+										delete laser_limit[i];
+										laser_limit[i] = nullptr;
 									}
+									else if (laser_limit[i] == NULL)break;									
 								}
 							}
-
-							if (laser_limit[i] != NULL)//check to see if the mothership is hit 
-							{
-								if (the_mothership != NULL)
+							//check to see if the mothership is hit
+							if (laser_limit[i] != NULL && the_mothership != NULL && laser_limit[i]->getX() >= the_mothership->getX() && laser_limit[i]->getX() <= the_mothership->getX() + 103
+								&& laser_limit[i]->getY() >= the_mothership->getY() && laser_limit[i]->getY() <= the_mothership->getY() + 42
+								&& laser_limit[i]->getX() + 4 >= the_mothership->getX() && laser_limit[i]->getX() + 4 <= the_mothership->getX() + 103)  
+							{																	
+								the_mothership->reduceLives();
+								the_ship->setScore(20);
+								if (the_mothership->getLives() <= 0)
 								{
-									if (laser_limit[i]->getX() >= the_mothership->getX() && laser_limit[i]->getX() <= the_mothership->getX() + 103)
-									{
-										if (laser_limit[i]->getY() >= the_mothership->getY() && laser_limit[i]->getY() <= the_mothership->getY() + 42)
-										{
-											if (laser_limit[i]->getX() + 4 >= the_mothership->getX() && laser_limit[i]->getX() + 4 <= the_mothership->getX() + 103)
-											{
-												the_mothership->reduceLives();
-												the_ship->setScore(20);
-												if (the_mothership->getLives() <= 0)
-												{
-													the_ship->increaseLives();
-													the_ship->setScore(300);
-													delete the_mothership;
-													the_mothership = nullptr;
-													the_ship->setScore(100);
-													delete laser_limit[i];
-													laser_limit[i] = nullptr;
-													laser_limit[i] = NULL;
-												}
-											}
-										}
-									}
-								}
+									the_ship->increaseLives();
+									the_ship->setScore(300);
+									delete the_mothership;
+									the_mothership = nullptr;
+									the_ship->setScore(100);
+									delete laser_limit[i];
+									laser_limit[i] = nullptr;
+									laser_limit[i] = NULL;
+								}								
 							}
 							if (laser_limit[i] != NULL)//draw and move the player laser if no hit
 							{
@@ -281,29 +254,22 @@ int main()
 
 					for (int i = 0; i < 10; i++)//check for hit against player and delete the ufo lasers which hit
 					{
-						if (Ufo_lasers[i] != NULL)
+						if (Ufo_lasers[i] != NULL && Ufo_lasers[i]->getX() >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 10 <= the_ship->getX() + 86
+							&& Ufo_lasers[i]->getY() >= the_ship->getY() + 10 && Ufo_lasers[i]->getY() <= the_ship->getY() + 58
+							&& Ufo_lasers[i]->getX() + 4 >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 4 <= the_ship->getX() + 86)
+						{							
+							the_ship->reduceLives();
+							delete Ufo_lasers[i];
+							Ufo_lasers[i] = nullptr;
+							Ufo_lasers[i] = NULL;
+						}
+						else if (Ufo_lasers[i] != NULL)//draw and move the ufo lasers if no hit
 						{
-							if (Ufo_lasers[i]->getX() >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 10 <= the_ship->getX() + 86)
-							{
-								if (Ufo_lasers[i]->getY() >= the_ship->getY() + 10 && Ufo_lasers[i]->getY() <= the_ship->getY() + 58)
-								{
-									if (Ufo_lasers[i]->getX() + 4 >= the_ship->getX() + 10 && Ufo_lasers[i]->getX() + 4 <= the_ship->getX() + 86)
-									{
-										the_ship->reduceLives();
-										delete Ufo_lasers[i];
-										Ufo_lasers[i] = nullptr;
-										Ufo_lasers[i] = NULL;
-									}
-								}
-							}
-
-							if (Ufo_lasers[i] != NULL)//draw and move the ufo lasers if no hit
-							{
-								Ufo_lasers[i]->draw();
-								Ufo_lasers[i]->down();
-							}
+							Ufo_lasers[i]->draw();
+							Ufo_lasers[i]->down();
 						}
 					}
+					
 
 					//draw all the ufos
 					for (x = 0; x < 10; x++)
@@ -319,23 +285,20 @@ int main()
 					{
 						for (y = 0; y < 5; y++)
 						{
-							if (DynamicUfoArray[y][x] != NULL)
-							{
-								if (DynamicUfoArray[y][x]->Ufo::getY() >= 575)
+							if (DynamicUfoArray[y][x] != NULL && DynamicUfoArray[y][x]->Ufo::getY() >= 575)
+							{								
+								the_ship->kill();//don't let the ufos get to the bottom !!!
+								for (y = 0; y < 5; y++)
 								{
-									the_ship->kill();//don't let the ufos get to the bottom !!!
-									for (y = 0; y < 5; y++)
+									for (x = 0; x < 10; x++)
 									{
-										for (x = 0; x < 10; x++)
+										if (DynamicUfoArray[y][x] != NULL)
 										{
-											if (DynamicUfoArray[y][x] != NULL)
-											{
-												DynamicUfoArray[y][x]->Ufo::setX((x * 85) + 85);
-												DynamicUfoArray[y][x]->Ufo::setY((y * 50) + 70);
-											}
+											DynamicUfoArray[y][x]->Ufo::setX((x * 85) + 85);
+											DynamicUfoArray[y][x]->Ufo::setY((y * 50) + 70);
 										}
 									}
-								}
+								}								
 							}
 						}
 					}

@@ -41,7 +41,7 @@ Ship::~Ship()
 {
 	for (int i = 0; i < 2; i++)//change the less than bit for more or less images
 	{
-		al_destroy_bitmap(m_ship_images[i]);
+		if(m_ship_images[i] != NULL)al_destroy_bitmap(m_ship_images[i]);
 	}
 	m_ship_images.clear();
 }
