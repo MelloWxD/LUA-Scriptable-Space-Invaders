@@ -23,6 +23,7 @@
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="laser.cpp" />
+    <ClCompile Include="LUAHelper.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mothership.cpp" />
     <ClCompile Include="Player.cpp" />
@@ -35,6 +36,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="laser.h" />
+    <ClInclude Include="LUAHelper.h" />
     <ClInclude Include="Mothership.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Scene.h" />
