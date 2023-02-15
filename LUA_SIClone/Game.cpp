@@ -54,27 +54,27 @@ Game::Game()
 	al_init_font_addon(); // initialize the font addon
 	al_init_ttf_addon();  // initialize the True Type Font addon
 
-	m_game_over = al_load_ttf_font("assets/DejaVuSans.ttf", 70, 0);
-	if (!m_game_over)
+	m_LargeMessage = al_load_ttf_font("assets/DejaVuSans.ttf", 70, 0);
+	if (!m_LargeMessage)
 	{
-		cout << "Game over message creation failed" << endl;
+		cout << "Large text creation failed" << endl;
 		cout << "Press any key to exit" << endl;
 		_getch();
-		al_destroy_font(m_game_over);
+		al_destroy_font(m_LargeMessage);
 		return;
 	}
 
-	m_lives = al_load_ttf_font("assets/DejaVuSans.ttf", 20, 0);
-	if (!m_lives)
+	m_SmallMessage = al_load_ttf_font("assets/DejaVuSans.ttf", 20, 0);
+	if (!m_SmallMessage)
 	{
-		cout << "Lives display creation failed" << endl;
+		cout << "Small text display creation failed" << endl;
 		cout << "Press any key to exit" << endl;
 		_getch();
-		al_destroy_font(m_lives);
+		al_destroy_font(m_SmallMessage);
 		return;
 	}
 
-	m_score = al_load_ttf_font("assets/DejaVuSans.ttf", 20, 0);
+	/*m_score = al_load_ttf_font("assets/DejaVuSans.ttf", 20, 0);
 	if (!m_score)
 	{
 		cout << "Score display creation failed" << endl;
@@ -102,7 +102,7 @@ Game::Game()
 		_getch();
 		al_destroy_font(m_credits);
 		return;
-	}
+	}*/
 
 	al_init_image_addon(); // initialise allegro image loading 
 	Input* Input_manager = new Input();
@@ -113,37 +113,37 @@ Game::Game()
 
 Game::~Game()
 {
-	al_destroy_font(m_game_over);
-	al_destroy_font(m_lives);
-	al_destroy_font(m_score);
+	al_destroy_font(m_LargeMessage);
+	al_destroy_font(m_SmallMessage);
+	/*al_destroy_font(m_score);
 	al_destroy_font(m_level);
 	al_destroy_display(m_display);
-	al_destroy_font(m_credits);
+	al_destroy_font(m_credits);*/
 }
 
 //Methods
-ALLEGRO_FONT* Game::game_over_message()
+ALLEGRO_FONT* Game::message()
 {
-	return m_game_over;
+	return m_LargeMessage;
 }
 
-ALLEGRO_FONT* Game::Lives_message()
+ALLEGRO_FONT* Game::small_message()
 {
-	return m_lives;
+	return m_SmallMessage;
 }
-
-ALLEGRO_FONT* Game::Score_message()
-{
-	return m_score;
-}
-
-ALLEGRO_FONT* Game::Level_message()
-{
-	return m_level;
-}
-
-ALLEGRO_FONT* Game::Credits()
-{
-	return m_credits;
-}
+//
+//ALLEGRO_FONT* Game::Score_message()
+//{
+//	return m_score;
+//}
+//
+//ALLEGRO_FONT* Game::Level_message()
+//{
+//	return m_level;
+//}
+//
+//ALLEGRO_FONT* Game::Credits()
+//{
+//	return m_credits;
+//}
 

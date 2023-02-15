@@ -1,4 +1,4 @@
-/*Lua helper which file links lua with C++*/
+/*Lua helper which links lua with C++*/
 
 #pragma once
 
@@ -15,4 +15,4 @@ extern "C"
 
 #ifdef _WIN32
 #pragma comment(lib, "../lua-5.4.4/liblua54.a")
-#endif // _WWIN32
+#endif // _WIN32

@@ -22,11 +22,11 @@ class Game
 {
 private:
 	//members	
-	ALLEGRO_FONT* m_game_over = NULL;//game over message
-	ALLEGRO_FONT* m_lives = NULL;//lives display
-	ALLEGRO_FONT* m_score = NULL;
-	ALLEGRO_FONT* m_level = NULL;
-	ALLEGRO_FONT* m_credits = NULL;
+	ALLEGRO_FONT* m_LargeMessage = NULL;//game over message
+	ALLEGRO_FONT* m_SmallMessage = NULL;//lives display
+	//ALLEGRO_FONT* m_score = NULL;
+	//ALLEGRO_FONT* m_level = NULL;
+	//ALLEGRO_FONT* m_credits = NULL;
 
 protected:
 	//members
@@ -38,9 +38,9 @@ public:
 	~Game();
 
 	//methods
-	ALLEGRO_FONT* game_over_message();//get method
-	ALLEGRO_FONT* Lives_message();//get method
-	ALLEGRO_FONT* Score_message();//get method
-	ALLEGRO_FONT* Level_message();
-	ALLEGRO_FONT* Credits();
+	ALLEGRO_FONT* message();//get method
+	ALLEGRO_FONT* small_message();//get method
+	//ALLEGRO_FONT* Score_message();//get method
+	//ALLEGRO_FONT* Level_message();
+	//ALLEGRO_FONT* Credits();
 };
